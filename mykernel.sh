@@ -14,7 +14,7 @@ else
     echo "**************** Install qemu now *****************"
 
     sudo apt-get install -y qemu >> /dev/null
-    sudo ln -s /usr/bin/qemu-system-i386 /usr/bin/qemu
+    sudo ln -s /usr/bin/qemu-system-x86_64 /usr/bin/qemu
 fi
 
 

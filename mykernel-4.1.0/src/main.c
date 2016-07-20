@@ -50,8 +50,8 @@ static void my_process(void)
 		if (i++ % 10000000)
 			continue;
 
-		printk(KERN_NOTICE "this is process %d - =WangPanPan(Soleprincess)=\n",
-		       my_current_task->pid);
+		//printk(KERN_NOTICE "this is process %d - =WangPanPan(Soleprincess)=\n",
+		//       my_current_task->pid);
 
         if (my_need_sched == 1)
         {
@@ -61,7 +61,7 @@ static void my_process(void)
 		    printk(KERN_NOTICE "process %d re-schedule\n", my_current_task->pid);
 		}
 
-        printk(KERN_NOTICE "this is process %d + =ChengJian(Gatieme)=\n",
-		       my_current_task->pid);
+        //printk(KERN_NOTICE "this is process %d + =ChengJian(Gatieme)=\n",
+		//       my_current_task->pid);
 	}
 }
