@@ -1,9 +1,30 @@
 #1	Welcome to the KINK(KernelInKernel)
 -------
 
+<font color=0x00ffff>
 It is a platform to write your own OS kernel,its based on Linux Kernel 3.9.4/4.1.0 source code
+</font>
+
 
 ![linux-3.9.4](./images/linux-3.9.4.png)
+
+your can use `qemu` to run our kernel(KINK).
+
+install qemu by
+
+```c
+sudo apt-get install qemu # install QEMU
+```
+
+
+```
+sudo ln -s /usr/bin/qemu-system-i386 /usr/bin/qemu
+```
+
+or
+```
+sudo ln -s /usr/bin/qemu-system-x86_64 /usr/bin/qemu
+```
 
 
 #2	How to Make
@@ -70,9 +91,19 @@ makefile的执行过程其实相当于执行了如下命令
 
 以内核linux-4.1为例, 其中与linux-3.9内核有差别的地方我们会单独列出
 
+
+**首先安装qemu**
 ```c
 sudo apt-get install qemu # install QEMU
+```
+
+```
 sudo ln -s /usr/bin/qemu-system-i386 /usr/bin/qemu
+```
+
+或者
+```
+sudo ln -s /usr/bin/qemu-system-x86_64 /usr/bin/qemu
 ```
 
 **下载内核源码** download Linux Kernel 4.1 source code, 源代码被下载到downloads目录下
@@ -84,6 +115,7 @@ wget https://www.kernel.org/pub/linux/kernel/v4.x/linux-4.1.tar.xz
 
 **解压缩内核源码**, 会将内核源代码解压缩到kernel目录下
 ```
+
 cd download
 xz -d linux-4.1.tar.xz
 tar -Jxvf linux-4.1.tar -C ../kernel #被解压缩kernel/linux-4.1目录下
