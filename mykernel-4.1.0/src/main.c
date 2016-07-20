@@ -58,6 +58,7 @@ static void my_process(void)
 		    printk(KERN_NOTICE "process %d schedule\n", my_current_task->pid);
 			my_need_sched = 0;
 			my_schedule();
+		    printk(KERN_NOTICE "process %d re-schedule\n", my_current_task->pid);
 		}
 
         printk(KERN_NOTICE "this is process %d + =ChengJian(Gatieme)=\n",

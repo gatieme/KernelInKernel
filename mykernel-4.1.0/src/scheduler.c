@@ -22,9 +22,12 @@ void my_schedule(void)
 {
 	myPCB *next, *prev;
 
-	if (my_current_task == NULL || my_current_task->next == NULL)
+	if (my_current_task == NULL
+	|| my_current_task->next == NULL)
+	{
+	printk(KERN_NOTICE "                time out!!!,but no more than 2 task,need not schedule\n");
 		return;
-
+	}
 	printk(KERN_NOTICE ">>> %s <<<\n", __func__);
 	/* schedule */
 	next = my_current_task->next;
@@ -34,7 +37,7 @@ void my_schedule(void)
 		printk(KERN_NOTICE ">>>switch from %d to %d<<<\n",
 			prev->pid, next->pid);
                 /* switch to next process */
-		asm volatile(	
+		asm volatile(
 			"movl	%%esp, %0\n\t"	/* save esp */
 			"movl	%2, %%esp\n\t"	/* restore  esp */
 			"movl	$1f, %1\n\t"	/* save eip */

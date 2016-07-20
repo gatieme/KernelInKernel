@@ -5,10 +5,10 @@
  *  Kernel internal my_timer_handler
  *
  *  Copyright (C) 2013  Mengning
- *  
+ *
  *  Modified zhyq
- * 
- * 
+ *
+ *
  *  You can redistribute or modify this program under the terms
  *  of the GNU General Public License as published by
  *  the Free Software Foundation.
@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
- 
+
 
 #include <linux/types.h>
 #include <linux/module.h>
@@ -90,7 +90,7 @@
 
 #include <linux/vmalloc.h>
 
-#include <linux/module.h> 
+#include <linux/module.h>
 #include <linux/kernel.h>
 
 #ifdef CONFIG_X86_LOCAL_APIC
@@ -153,14 +153,20 @@ void my_process(void)
         i++;
         if(i%10000000 == 0)
         {
-	  
+		    //printk(KERN_NOTICE "this is process %d - =WangPanPan(Soleprincess)=\n",
+		    //       my_current_task->pid);
+
             if(my_need_sched == 1)
             {
+		        //printk(KERN_NOTICE "process %d schedule\n", my_current_task->pid);
                 my_need_sched = 0;
-		sand_priority();
-	   	my_schedule();  
-		
-	   }
+        		sand_priority();
+	   	        my_schedule();
+
+		        //printk(KERN_NOTICE "process %d re-schedule\n", my_current_task->pid);
+	        }
+		    //printk(KERN_NOTICE "this is process %d - =ChengJian(Gatieme)=\n",
+		    //   my_current_task->pid);
         }
     }
 }//end of my_process
