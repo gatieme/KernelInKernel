@@ -247,9 +247,9 @@ patch -p1 < ../../patches/linux-4_1-mykernel.patch
 
 #6	Links
 -------
+*	[Linux进程管理与调度-之-目录导航](http://blog.csdn.net/gatieme/article/details/51456569)
 
-
-*	参照	[Linux内核分析期末总结](http://blog.csdn.net/pianogirl123/article/details/51287024)
+*	[Linux内核分析期末总结](http://blog.csdn.net/pianogirl123/article/details/51287024)
 
 
 * [2013年暑期补课计算机操作系统原理](https://github.com/mengning/mykernel/wiki/OS2013)
