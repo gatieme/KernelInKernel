@@ -1,0 +1,80 @@
+diff -Naur linux-3.9.4.src/arch/x86/kernel/time.c linux-3.9.4.new/arch/x86/kernel/time.c
+--- linux-3.9.4.src/arch/x86/kernel/time.c	2016-07-20 20:06:47.750806769 +0800
++++ linux-3.9.4.new/arch/x86/kernel/time.c	2016-07-20 20:08:17.874807278 +0800
+@@ -13,6 +13,7 @@
+ #include <linux/interrupt.h>
+ #include <linux/i8253.h>
+ #include <linux/time.h>
++#include <linux/timer.h>
+ #include <linux/export.h>
+ 
+ #include <asm/vsyscall.h>
+@@ -57,6 +58,7 @@
+ static irqreturn_t timer_interrupt(int irq, void *dev_id)
+ {
+ 	global_clock_event->event_handler(global_clock_event);
++    my_timer_handler();
+ 	return IRQ_HANDLED;
+ }
+ 
+@@ -68,6 +70,7 @@
+ 
+ void __init setup_default_timer_irq(void)
+ {
++    printk(KERN_NOTICE "timer interrupt setup\n"); 
+ 	setup_irq(0, &irq0);
+ }
+ 
+diff -Naur linux-3.9.4.src/include/linux/start_kernel.h linux-3.9.4.new/include/linux/start_kernel.h
+--- linux-3.9.4.src/include/linux/start_kernel.h	2016-07-20 20:06:29.418806666 +0800
++++ linux-3.9.4.new/include/linux/start_kernel.h	2016-07-20 20:08:17.874807278 +0800
+@@ -8,5 +8,6 @@
+    up something else. */
+ 
+ extern asmlinkage void __init start_kernel(void);
++extern void __init my_start_kernel(void);
+ 
+ #endif /* _LINUX_START_KERNEL_H */
+diff -Naur linux-3.9.4.src/include/linux/timer.h linux-3.9.4.new/include/linux/timer.h
+--- linux-3.9.4.src/include/linux/timer.h	2016-07-20 20:06:29.406806666 +0800
++++ linux-3.9.4.new/include/linux/timer.h	2016-07-20 20:08:17.874807278 +0800
+@@ -251,6 +251,8 @@
+ 
+ extern void init_timers(void);
+ extern void run_local_timers(void);
++extern void my_timer_handler(void);
++
+ struct hrtimer;
+ extern enum hrtimer_restart it_real_fn(struct hrtimer *);
+ 
+diff -Naur linux-3.9.4.src/init/main.c linux-3.9.4.new/init/main.c
+--- linux-3.9.4.src/init/main.c	2016-07-20 20:06:51.986806793 +0800
++++ linux-3.9.4.new/init/main.c	2016-07-20 20:08:17.878807278 +0800
+@@ -574,7 +574,6 @@
+ 	console_init();
+ 	if (panic_later)
+ 		panic(panic_later, panic_param);
+-
+ 	lockdep_info();
+ 
+ 	/*
+@@ -641,6 +640,7 @@
+ 
+ 	ftrace_init();
+ 
++    my_start_kernel();
+ 	/* Do the rest non-__init'ed, we're now alive */
+ 	rest_init();
+ }
+diff -Naur linux-3.9.4.src/Makefile linux-3.9.4.new/Makefile
+--- linux-3.9.4.src/Makefile	2016-07-20 20:06:43.022806743 +0800
++++ linux-3.9.4.new/Makefile	2016-07-20 20:09:13.834807594 +0800
+@@ -733,7 +733,7 @@
+ 
+ 
+ ifeq ($(KBUILD_EXTMOD),)
+-core-y		+= kernel/ mm/ fs/ ipc/ security/ crypto/ block/
++core-y		+= kernel/ mm/ fs/ ipc/ security/ crypto/ block/ mysrc/
+ 
+ vmlinux-dirs	:= $(patsubst %/,%,$(filter %/, $(init-y) $(init-m) \
+ 		     $(core-y) $(core-m) $(drivers-y) $(drivers-m) \

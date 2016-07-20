@@ -1,33 +1,16 @@
-# Object files
+# intermediate directories
+mykernel-3.9.4/downloads/
+mykernel-3.9.4/kernel/
+mykernel-3.9.4/.stamps/
+mykernel-3.9.4/.out/
+
+mykernel-4.1.0/downloads/
+mykernel-4.1.0/kernel/
+mykernel-4.1.0/.stamps/
+mykernel-4.1.0/.out/
+
+# Normal rules
+.*
 *.o
-*.ko
-*.obj
-*.elf
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
-
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
-
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
-
-# Debug files
-*.dSYM/
-*.su
+*.o.*
+*.order
