@@ -9,6 +9,6 @@ all:github
 
 .PNONY	:	github
 github	:
-	git	add -A
+	git add -A
 	git commit -m $(COMMIT)
 	git push origin master
