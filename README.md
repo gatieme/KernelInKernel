@@ -1,4 +1,4 @@
-#1	Welcome to the KINK(KernelInKernel)
+#	Welcome to the KINK(KernelInKernel)
 -------
 
 <font color=0x00ffff>
@@ -10,7 +10,7 @@ It is a platform to write your own OS kernel,its based on Linux Kernel 3.9.4/4.1
 
 
 
-##1.1	install qemu
+##	install qemu
 -------
 
 
@@ -32,7 +32,7 @@ or
 sudo ln -s /usr/bin/qemu-system-x86_64 /usr/bin/qemu
 ```
 
-##1.2	make KInK
+##	make KInK
 -------
 
 
@@ -51,7 +51,7 @@ cd linux-4.1
 make
 ```
 
-##1.3	run KInK
+##	run KInK
 -------
 
 run KInK in linux-3.9.4
