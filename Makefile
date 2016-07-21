@@ -1,4 +1,4 @@
-COMMIT="添加了kink-src..."
+COMMIT="更新了README..."
 
 KERNEL_3_DIR=mykernel-3.9.4
 

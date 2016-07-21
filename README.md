@@ -245,20 +245,14 @@ patch -p1 < ../../patches/linux-4_1-mykernel.patch
 
 *	我们的项目是在[jserv/kernel-in-kernel](https://github.com/jserv/kernel-in-kernel)(基于linux-4.1.0)和[mengning/mykernel](https://github.com/mengning/mykernel)(基于linux-3.9.4)的基础上整合在一起的, 而后者也是在前者的基础上改进的, 这些都是原作者的劳动成果, 我们应该给予尊重
 .
-
 *	该项目的本质是希望通过一个模拟的内核机制来实现我们自定义的进程调度机制或者其他内核机制, 因此在多个版本的内核中同时编译运行, 不同的内核中采用不同的机制或者不同的参数, 利于我们开发改进
 
 
-＊	我们的KINK在不断的完善, 给出两个或者多个分支版本, 即可以方便我们对比进度和完善的情况, 也利于我们分析其在不同内核中的运行情况.
+*	我们的KINK在不断的完善, 给出两个或者多个分支版本, 即可以方便我们对比进度和完善的情况, 也利于我们分析其在不同内核中的运行情况.
 
 *	由于linux内核在不断更新, 我们不排除后期仍然会增加其他的内核版本, 甚至可能添加一些早期版本比如2.x
 
-#5	Comments
--------
 
-* KernelInKernel一个短小精悍的模拟内核，在Linux内核的基础山已补丁patch的方式实现, 通过屏蔽掉linux内核的启动函数,　实现自己的start_kernel来启动一个小巧的操作系统
-
-*	本系统在[jserv/kernel-in-kernel](https://github.com/jserv/kernel-in-kernel)(基于linux-4.1.0)和[mengning/mykernel](https://github.com/mengning/mykernel)(基于linux-3.9.4)的基础上实现, 将两者整合在一起, 借鉴了前者的makefile机制和后者的调度器.
 
 
 ##5.2	如何编写自己的内核
@@ -280,10 +274,15 @@ OR
 
 *	我们说过了linux-kernel内核源代码的mysrc是一个指向了src的链接目录, 如果你觉得每次拷贝麻烦, 你甚至可以直接将mysrc连接到kink-src目录, 这样就不同每次拷贝了.
 
+#6	Comments
+-------
+
+* KernelInKernel一个短小精悍的模拟内核，在Linux内核的基础山已补丁patch的方式实现, 通过屏蔽掉linux内核的启动函数,　实现自己的start_kernel来启动一个小巧的操作系统
+
+*	本系统在[jserv/kernel-in-kernel](https://github.com/jserv/kernel-in-kernel)(基于linux-4.1.0)和[mengning/mykernel](https://github.com/mengning/mykernel)(基于linux-3.9.4)的基础上实现, 将两者整合在一起, 借鉴了前者的makefile机制和后者的调度器.
 
 
-
-#6	Links
+#7	Links
 -------
 *	[Linux进程管理与调度-之-目录导航](http://blog.csdn.net/gatieme/article/details/51456569)
 
