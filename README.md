@@ -1,4 +1,4 @@
-#	Welcome to the KINK(KernelInKernel)
+#	Welcome to the KInK(KernelInKernel)
 -------
 
 <font color=0x00ffff>
