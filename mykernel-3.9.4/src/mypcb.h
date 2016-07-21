@@ -5,10 +5,10 @@
  *  Kernel internal my_timer_handler
  *
  *  Copyright (C) 2013  Mengning
- *  
+ *
  *  Modified 2014 Yunquan Zhang  <zhangyunquan@hotmail.com>
- * 
- * 
+ *
+ *
  *  You can redistribute or modify this program under the terms
  *  of the GNU General Public License as published by
  *  the Free Software Foundation.
@@ -27,9 +27,10 @@ struct Thread {
     unsigned long	sp;//point to the thread stack's top address
     //todo add other attrubte of system thread
 };
+
 //PCB Struct
 typedef struct PCB{
-    int pid; // pcb id 
+    int pid; // pcb id
     volatile long state;	/* -1 unrunnable, 0 runnable, >0 stopped */
     char stack[KERNEL_STACK_SIZE];// each pcb stack size is 1024*8
     /* CPU-specific state of this task */
