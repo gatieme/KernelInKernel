@@ -9,6 +9,9 @@ It is a platform to write your own OS kernel,its based on Linux Kernel 3.9.4/4.1
 ![linux-3.9.4](doc/images/linux-3.9.4.png)
 
 
+#1	Start KInK
+-------
+
 
 ##1.1	install qemu
 -------
