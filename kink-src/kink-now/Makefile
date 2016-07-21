@@ -2,5 +2,5 @@
 # Makefile for the linux mykernel.
 #
 
-obj-y     = main.o interrupt.o scheduler.o
+obj-y = interrupt.o scheduler.o main.o
 

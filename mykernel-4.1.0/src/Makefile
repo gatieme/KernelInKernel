@@ -1,4 +1,2 @@
 # used by Linux kernel
-obj-y = \
-	main.o \
-	scheduler.o
+obj-y = interrupt.o scheduler.o main.o

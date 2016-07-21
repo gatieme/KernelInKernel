@@ -81,7 +81,7 @@ CPUS := $(shell grep -c ^processor /proc/cpuinfo 2>/dev/null || \
 endif
 
 .stamps/build: $(KERNEL_PATCH_DIR)/Makefile \
-              src/scheduler.c src/main.c src/pcb.h
+               src/interrupt.c src/scheduler.c src/main.c src/pcb.h
 	(cd $(KERNEL_PATCH_DIR); $(MAKE) O=$(OUT) -j $(CPUS))
 	@touch $@
 
@@ -120,6 +120,15 @@ rmlink	:
 .PHNOY	:	link
 link	:
 	(cd $(KERNEL_PATCH_DIR); ln -s ../../src mysrc)
+
+
+#	------------
+#	build kernel
+#	------------
+.PHNOY	:	build
+build	:
+	(cd $(KERNEL_PATCH_DIR); $(MAKE) O=$(OUT))
+
 
 #	-------------------
 #	clean and distclean

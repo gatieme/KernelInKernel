@@ -60,7 +60,6 @@
 extern tPCB task[MAX_TASK_NUM];
 extern tPCB * my_current_task;
 extern volatile int my_need_sched;
-volatile int time_count = 0;
 
 
 void all_task_print(void)
@@ -87,9 +86,9 @@ void all_task_print(void)
 tPCB * get_next(void)
 {
 	int pid,i;
-	tPCB * point = NULL;
-	tPCB * hig_pri = NULL;//points to the the hightest task
-	all_task_print( );
+	tPCB * point=NULL;
+	tPCB * hig_pri=NULL;//points to the the hightest task
+	all_task_print();
 	hig_pri=my_current_task;
 	for(i=0;i<MAX_TASK_NUM;i++)
 		if(task[i].priority<hig_pri->priority)

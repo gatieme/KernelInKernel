@@ -1,6 +1,2 @@
-#
-# Makefile for the linux mykernel.
-#
-
-obj-y     = main.o interrupt.o
-
+# used by Linux kernel
+obj-y = interrupt.o scheduler.o main.o

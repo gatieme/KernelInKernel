@@ -1,4 +1,4 @@
-COMMIT="更新了README..."
+COMMIT="增加了make build构建内核, 更新了mysrc的代码结构..."
 
 KERNEL_3_DIR=mykernel-3.9.4
 
