@@ -274,6 +274,17 @@ OR
 
 *	我们说过了linux-kernel内核源代码的mysrc是一个指向了src的链接目录, 如果你觉得每次拷贝麻烦, 你甚至可以直接将mysrc连接到kink-src目录, 这样就不同每次拷贝了.
 
+kink-src中源码, 以及mysrc, src的源码结构如下
+
+| 文件 | 描述 |
+|:-------:|:-------:|
+| pcb.h | 进程的基本信息PCB结构 |
+| interrupt.c | 周期性中断处理, 其功能类似与周期性调度器 |
+| scheduler.c | 主调度器, 如果需要更改调度机制, 主要是更改此目录 |
+| main.c | KINK-kernel的主函数 |
+| Makefile | 构建内核源码需要的makefile |
+
+
 #6	Comments
 -------
 
