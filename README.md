@@ -30,7 +30,49 @@ sudo ln -s /usr/bin/qemu-system-x86_64 /usr/bin/qemu
 #2	How to Make
 -------
 
-#2.1	根目录
+##2.1	make内核
+-------
+
+mykernel-3.9.4是linux-3.9.4的构建目录
+
+mykernel-4.1.0是linux-4.1.0的构建目录
+
+他们都采用了同样的构建方式
+<font color=0x00ffff>
+1.	首先将3.x和4.x内核的源代码, 下载到download目录下
+
+2.	接着想内核源代码解压缩到kernel, 并拷贝处两个副本linux-x.x.x.new和linux-x.x.x.src, 前者作为我们自己的kernel构建，　后者则是一份纯净的linux内核源码, 两个副本有利于我们生成自己的patch
+
+3.	patch内核, 使linux内核开机后执行我们自己定义的start_kernel
+
+4.	使用预先的.config(位于configs目录的下mini-86.config文件)配着linux内核的编译参数, 也可以使用make allnoconfig使用默认配置, 至此.config文件生成,　可以执行make构建内核的操作
+
+5.	make构建内核, 为了保持内核源码的纯净, 我们使用make O=.out将内核构建到.out目录下, 构建完成后将在构建目录.out的arch/x86/boot下生成内核镜像bzImage
+
+6.	qemu -kernel bzImage用qemu启动内核
+</font>
+
+
+我们的makefile设置了所有自动化的配置工作, 可以直接使用make来完成所有的工作,但是我们仍然有必要了解构建的过程,　这对于我们学习, 修改以及出错排查都有帮助
+
+构建**linux-3.9.4**
+
+```c
+cd linux-3.9.4
+make
+```
+
+构建**linux-4.1**
+
+```c
+cd linux-4.1
+make
+```
+
+
+如果您想了解详细的构建机理, 请参照如下信息
+
+#2.2	根目录
 -------
 
 | 目录 | 描述 |
@@ -43,17 +85,15 @@ sudo ln -s /usr/bin/qemu-system-x86_64 /usr/bin/qemu
 | os2013 | [2013年暑期补课计算机操作系统原理](https://github.com/mengning/mykernel/wiki/OS2013) |
 | README.md | 帮助文档 |
 
-##2.2	构建目录结构
+##2.3	构建目录结构
 -------
 
 mykernel-3.9.4是linux-3.9.4的构建目录
 
 mykernel-4.1.0是linux-4.1.0的构建目录
 
-他们都采用了同样的构建方式
 
-1.	首先将3.x和4.x内核的源代码, 下载到download目录下, 此工作由make 
-
+首先来看下mykernel-x.x的目录结构
 
 | 目录 | 描述 |
 |:-------:|:-------:|
@@ -65,7 +105,7 @@ mykernel-4.1.0是linux-4.1.0的构建目录
 | Makefile | 用于构建的Makefile |
 | README.md | 文档信息 |
 
-#2.3	makefile构建过程
+#2.4	makefile构建过程
 -------
 
 
@@ -85,8 +125,12 @@ mykernel-4.1.0是linux-4.1.0的构建目录
 
 
 
-#2.4	总结
+#2.5	总结
 -------
+
+<font color=0x00ffff>
+**不用makefile如何一步一步构建内核**
+</font>
 
 makefile的执行过程其实相当于执行了如下命令
 
@@ -274,7 +318,9 @@ OR
 
 *	我们说过了linux-kernel内核源代码的mysrc是一个指向了src的链接目录, 如果你觉得每次拷贝麻烦, 你甚至可以直接将mysrc连接到kink-src目录, 这样就不同每次拷贝了.
 
+<font color=0x00ffff>
 kink-src中源码, 以及mysrc, src的源码结构如下
+</font>
 
 | 文件 | 描述 |
 |:-------:|:-------:|
