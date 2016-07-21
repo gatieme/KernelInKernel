@@ -82,7 +82,7 @@ make
 | kink-src		 | 不断开发和改进的KINK小巧内核, 开发完成后, 将导入到内核构建目录的src中参与构建 |
 | mykernel.sh | 早期的构建脚本, 已经废弃, 现在已经使用makefile来完成自动化构建, 但是脚本myel.sh仍可以给我们基本的构建思路 |
 | doc | 操作系统的文档信息 |
-| os2013 | [2013年暑期补课计算机操作系统原理](https://github.com/mengning/mykernel/wiki/OS2013) |
+| doc/os2013 | [2013年暑期补课计算机操作系统原理](https://github.com/mengning/mykernel/wiki/OS2013) |
 | README.md | 帮助文档 |
 
 ##2.3	构建目录结构
