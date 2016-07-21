@@ -8,6 +8,12 @@ It is a platform to write your own OS kernel,its based on Linux Kernel 3.9.4/4.1
 
 ![linux-3.9.4](doc/images/linux-3.9.4.png)
 
+
+
+##1.1	install qemu
+-------
+
+
 your can use `qemu` to run our kernel(KINK).
 
 install qemu by
@@ -25,6 +31,43 @@ or
 ```
 sudo ln -s /usr/bin/qemu-system-x86_64 /usr/bin/qemu
 ```
+
+##1.2	make KInK
+-------
+
+
+
+build **linux-3.9.4**
+
+```c
+cd linux-3.9.4
+make
+```
+
+build **linux-4.1**
+
+```c
+cd linux-4.1
+make
+```
+
+##1.3	run KInK
+-------
+
+run KInK in linux-3.9.4
+
+```c
+cd linux-3.9.4
+make run
+```
+
+run KInK in **linux-4.1**
+
+```c
+cd linux-4.1
+make run
+```
+
 
 
 #2	How to Make
