@@ -6,7 +6,7 @@ It is a platform to write your own OS kernel,its based on Linux Kernel 3.9.4/4.1
 </font>
 
 
-![linux-3.9.4](./images/linux-3.9.4.png)
+![linux-3.9.4](doc/images/linux-3.9.4.png)
 
 your can use `qemu` to run our kernel(KINK).
 
@@ -204,11 +204,11 @@ qemu -kernel .out/arch/x86/boot/bzImage
 
 linux3.9.4的运行情况
 
-![linux-3.9.4](./images/linux-3.9.4.png)
+![linux-3.9.4](doc/images/linux-3.9.4.png)
 
 linux4.1.0的运行情况
 
-![linux-3.9.4](./images/linux-4.1.0.png)
+![linux-3.9.4](doc/images/linux-4.1.0.png)
 
 
 #4	如何生成/添加patch
