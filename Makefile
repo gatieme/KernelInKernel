@@ -7,7 +7,7 @@ KERNEL_4_DIR=mykernel-4.1.0
 
 .PNONY	:	github	run3	run4
 
-
+all	:	github
 
 #	github
 
