@@ -1,3 +1,9 @@
+本项目基于kernel in kernel项目修改
+
+| name | github | website |
+|:-------:|:-------:|:-------:|
+| kernel in kernel |git@github.com:jserv/kernel-in-kernel.git | https://github.com/jserv/kernel-in-kernel |
+
 Welcome to the kernel-in-kernel repository. Here you will find the
 straightfoward environment to develop your own operating system kernel
 by means of reusing Linux kernel, that implies that you do not have to

@@ -1,3 +1,10 @@
+本项目基于mykernel项目修改
+
+| name | github | website |
+|:-------:|:-------:|:-------:|
+| mykernel |ggit@github.com:mengning/mykernel.git | https://github.com/mengning/mykernel |
+
+
 # Welcome to the mykernel!
 
 It is a platform to write your own OS kernel,its based on Linux Kernel 3.9.4 source code.
