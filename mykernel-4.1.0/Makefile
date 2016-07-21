@@ -81,7 +81,7 @@ CPUS := $(shell grep -c ^processor /proc/cpuinfo 2>/dev/null || \
 endif
 
 .stamps/build: $(KERNEL_PATCH_DIR)/Makefile \
-              src/scheduler.c src/main.c src/mypcb.h
+              src/scheduler.c src/main.c src/pcb.h
 	(cd $(KERNEL_PATCH_DIR); $(MAKE) O=$(OUT) -j $(CPUS))
 	@touch $@
 

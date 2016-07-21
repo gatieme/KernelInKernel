@@ -96,7 +96,7 @@
 #ifdef CONFIG_X86_LOCAL_APIC
 #include <asm/smp.h>
 #endif
-#include "mypcb.h"
+#include "pcb.h"
 
 tPCB task[MAX_TASK_NUM];
 tPCB * my_current_task = NULL;

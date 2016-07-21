@@ -1,4 +1,4 @@
-COMMIT="增加了makefile, 完善了README.md..."
+COMMIT="添加了kink-src..."
 
 KERNEL_3_DIR=mykernel-3.9.4
 
