@@ -68,19 +68,30 @@ void all_task_print(void)
 	printk(KERN_NOTICE "\n                current task is:%d   all task in OS are:\n",my_current_task->pid);
 
 	printk("        ");
-	for(i=0;i<cnum;i++)
+	for(i = 0; i < cnum; i++)
+    {
 		printk("-");
-	printk("\n        |  process:");
-	for(i=0;i< MAX_TASK_NUM;i++)
-		printk("| %2d ",i);
-	printk("|\n        | priority:");
-	for(i=0;i<MAX_TASK_NUM;i++)
-		printk("| %2d ",task[i].priority);
+    }
 
+    printk("\n        |  process:");
+
+    for(i=0;i< MAX_TASK_NUM;i++)
+    {
+		printk("| %2d ",i);
+    }
+
+    printk("|\n        | priority:");
+
+    for(i=0;i<MAX_TASK_NUM;i++)
+    {
+        printk("| %2d ",task[i].priority);
+    }
 	printk("|\n        ");
-	for(i=0;i<cnum;i++)
+	for(i = 0;i < cnum; i++)
+    {
 		printk("-");
-	printk("\n");
+    }
+    printk("\n");
 }
 
 tPCB * get_next(void)

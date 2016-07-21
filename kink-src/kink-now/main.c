@@ -111,6 +111,8 @@ void sand_priority(void)
 	for(i=0;i<MAX_TASK_NUM;i++)
 		task[i].priority=get_rand(PRIORITY_MAX);
 }
+
+
 void __init my_start_kernel(void)
 {
     int pid = 0;
