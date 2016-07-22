@@ -1,4 +1,4 @@
-COMMIT="修改了README..."
+COMMIT="增加了make run3和make run4直接运行..."
 
 KERNEL_3_DIR=mykernel-3.9.4
 
@@ -22,4 +22,4 @@ run3	:
 	cd $(KERNEL_3_DIR) && make run
 
 run4	:
-	cd $(KERNEL_3_DIR) && make run
+	cd $(KERNEL_4_DIR) && make run
