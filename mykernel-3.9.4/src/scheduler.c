@@ -14,7 +14,7 @@
  *  the Free Software Foundation.
  *
  * You should have received a copy of the GNU General Public License
- *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *  along with this program.  If not,  see <http://www.gnu.org/licenses/>.
  */
 
 #include <linux/kernel_stat.h>
@@ -64,36 +64,36 @@ extern volatile int my_need_sched;
 
 void all_task_print(void)
 {
-	int i,cnum=62;//
-	printk(KERN_NOTICE "\n                current task is:%d   all task in OS are:\n",my_current_task->pid);
+	int i, cnum = 62; //
+	printk(KERN_NOTICE "\n                current task is:%d   all task in OS are:\n", my_current_task->pid);
 
 	printk("        ");
-	for(i=0;i<cnum;i++)
+	for(i = 0; i < cnum; i++)
 		printk("-");
 	printk("\n        |  process:");
-	for(i=0;i< MAX_TASK_NUM;i++)
-		printk("| %2d ",i);
+	for(i = 0; i < MAX_TASK_NUM; i++)
+		printk("| %2d ", i);
 	printk("|\n        | priority:");
-	for(i=0;i<MAX_TASK_NUM;i++)
-		printk("| %2d ",task[i].priority);
+	for(i = 0; i < MAX_TASK_NUM; i++)
+		printk("| %2d ", task[i].priority);
 
 	printk("|\n        ");
-	for(i=0;i<cnum;i++)
+	for(i = 0; i < cnum; i++)
 		printk("-");
 	printk("\n");
 }
 
 tPCB * get_next(void)
 {
-	int pid,i;
-	tPCB * point=NULL;
-	tPCB * hig_pri=NULL;//points to the the hightest task
-	all_task_print();
-	hig_pri=my_current_task;
-	for(i=0;i<MAX_TASK_NUM;i++)
-		if(task[i].priority<hig_pri->priority)
-			hig_pri=&task[i];
-	printk("                higst process is:%d priority is:%d\n",hig_pri->pid,hig_pri->priority);
+	int pid, i;
+	tPCB * point = NULL;
+	tPCB * hig_pri = NULL; //points to the the hightest task
+	all_task_print( );
+	hig_pri = my_current_task;
+	for(i = 0; i<MAX_TASK_NUM;i++)
+		if(task[i].priority < hig_pri->priority)
+			hig_pri = &task[i];
+	printk("                higst process is:%d priority is:%d\n", hig_pri->pid,hig_pri->priority);
 	return hig_pri;
 
 }//end of priority_schedule
@@ -102,56 +102,57 @@ void my_schedule(void)
 {
     tPCB * next;
     tPCB * prev;
-    // if there no task running or only a task ,it shouldn't need schedule
+    // if there no task running or only a task , it shouldn't need schedule
     if(my_current_task == NULL
         || my_current_task->next == NULL)
     {
-	printk(KERN_NOTICE "                time out!!!,but no more than 2 task,need not schedule\n");
+	printk(KERN_NOTICE "                time out!!!, but no more than 2 task,need not schedule\n");
      return;
     }
     /* schedule */
 
     next = get_next();
     prev = my_current_task;
-    printk(KERN_NOTICE "                the next task is %d priority is %u\n",next->pid,next->priority);
-    if(next->state == 0)/* -1 unrunnable, 0 runnable, >0 stopped */
+    printk(KERN_NOTICE "                the next task is %d priority is %u\n", next->pid,next->priority);
+    if(next->state == 0)/* -1 unrunnable,  0 runnable, >0 stopped */
     {//save current scene
      /* switch to next process */
      asm volatile(
          "pushl %%ebp\n\t" /* save ebp */
-         "movl %%esp,%0\n\t" /* save esp */
-         "movl %2,%%esp\n\t" /* restore esp */
-         "movl $1f,%1\n\t" /* save eip */
+         "movl %%esp, %0\n\t" /* save esp */
+         "movl %2, %%esp\n\t" /* restore esp */
+         "movl $1f, %1\n\t" /* save eip */
          "pushl %3\n\t"
          "ret\n\t" /* restore eip */
          "1:\t" /* next process start here */
          "popl %%ebp\n\t"
-         : "=m" (prev->thread.sp),"=m" (prev->thread.ip)
-         : "m" (next->thread.sp),"m" (next->thread.ip)
+         : "=m" (prev->thread.sp), "=m" (prev->thread.ip)
+         : "m" (next->thread.sp), "m" (next->thread.ip)
      );
-     my_current_task = next;//switch to the next task
-    printk(KERN_NOTICE "                switch from %d process to %d process\n                >>>process %d running!!!<<<\n\n",prev->pid,next->pid,next->pid);
+    my_current_task = next; //switch to the next task
+    printk(KERN_NOTICE "                switch from %d process to %d process\n                >>>process %d running!!!<<<\n\n", prev->pid,next->pid,next->pid);
 
-  }
+    }
     else
     {
         next->state = 0;
         my_current_task = next;
-    printk(KERN_NOTICE "                switch from %d process to %d process\n                >>>process %d running!!!<<<\n\n\n",prev->pid,next->pid,next->pid);
+        printk(KERN_NOTICE "                switch from %d process to %d process\n                >>>process %d running!!!<<<\n\n\n", prev->pid,next->pid,next->pid);
 
-     /* switch to new process */
-     asm volatile(
-         "pushl %%ebp\n\t" /* save ebp */
-         "movl %%esp,%0\n\t" /* save esp */
-         "movl %2,%%esp\n\t" /* restore esp */
-         "movl %2,%%ebp\n\t" /* restore ebp */
-         "movl $1f,%1\n\t" /* save eip */
-         "pushl %3\n\t"
-         "ret\n\t" /* restore eip */
-         : "=m" (prev->thread.sp),"=m" (prev->thread.ip)
-         : "m" (next->thread.sp),"m" (next->thread.ip)
-     );
+        /* switch to new process */
+        asm volatile(
+            "pushl %%ebp\n\t" /* save ebp */
+            "movl %%esp, %0\n\t" /* save esp */
+            "movl %2, %%esp\n\t" /* restore esp */
+            "movl %2, %%ebp\n\t" /* restore ebp */
+            "movl $1f, %1\n\t" /* save eip */
+            "pushl %3\n\t"
+            "ret\n\t" /* restore eip */
+            : "=m" (prev->thread.sp), "=m" (prev->thread.ip)
+            : "m" (next->thread.sp), "m" (next->thread.ip)
+        );
     }
+
     return;
 }//end of my_schedule
 
